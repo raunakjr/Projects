@@ -1,0 +1,90 @@
+html
+└── head
+    ├── meta (charset, viewport, etc.)
+    ├── title
+    ├── link (preconnect, styles)
+    └── script
+└── body
+    └── main
+        ├── h1.title
+        │   └── span
+        └── div.app-container
+            ├── h2.subtitle
+            │   ├── span
+            │   └── img.sun-icon
+            ├── p.progress-label
+            ├── div.progress-bar
+            │   ├── div.progress-value
+            │   │   └── span
+            │   └── p.error-label
+            ├── div.goal-container (1st Goal)
+            │   ├── div.custom-checkbox
+            │   │   └── img.check-icon
+            │   └── input.goal-input (id="first")
+            ├── p.quote
+            └── p.made-with
+
+const inputid = checkbox.nextElementSibling.id; 
+// we are in custom-checkbox element we want to alter inputfield(goalinput)  
+//which is nextElementSibling of custom-checkbox
+// that why we are using nextElementSibling.
+Problems i have faced
+
+1:- whenever all goals completed then only we are able to tick
+2:- whenever we refersh all data field gets delete
+3:- input field are still editable when its marked done
+
+
+
+
+how to create new div and nested div </div>
+
+        <div class="goal-container">
+          <div class="custom-checkbox">
+            <img class="check-icon" src="tick.png" alt="check-icon" />
+          </div>
+          <input
+            class="goal-input"
+            type="text"
+            id="first"
+            placeholder="Add new goal... "
+          />
+        </div> 
+        
+// Function to create a new "goal-container" div
+function createGoalContainer(id, placeholderText) {
+  // Create the outer div with class "goal-container"
+  const goalContainer = document.createElement("div");
+  goalContainer.classList.add("goal-container");
+
+  // Create the nested div with class "custom-checkbox"
+  const customCheckbox = document.createElement("div");
+  customCheckbox.classList.add("custom-checkbox");
+
+  // Create the <img> element
+  const checkIcon = document.createElement("img");
+  checkIcon.classList.add("check-icon");
+  checkIcon.src = "tick.png"; // Specify the image source
+  checkIcon.alt = "check-icon";
+
+  // Append the <img> to the "custom-checkbox" div
+  customCheckbox.appendChild(checkIcon);
+
+  // Create the <input> element
+  const goalInput = document.createElement("input");
+  goalInput.classList.add("goal-input");
+  goalInput.type = "text";
+  goalInput.id = id; // Assign a unique ID
+  goalInput.placeholder = placeholderText;
+
+  // Append the "custom-checkbox" div and <input> to the "goal-container" div
+  goalContainer.appendChild(customCheckbox);
+  goalContainer.appendChild(goalInput);
+
+  // Append the "goal-container" div to the main container (or any desired parent)
+  document.body.appendChild(goalContainer); // Change document.body to your specific container
+}
+
+// Example usage
+createGoalContainer("fourth", "Add new goal... "); // Adds a new goal container with specific ID and placeholder
+createGoalContainer("fifth", "Write your goal here..."); // Adds another goal container
